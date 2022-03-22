@@ -47,7 +47,7 @@ describe("FNDCart", function () {
     const cart: FNDCart.CartItemStruct[] = [];
 
     beforeEach(async () => {
-      for (const tokenId in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
+      for (const tokenId of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
         cart.push({ nft: { nftContract: nft.address, tokenId }, maxPrice: buyPrice });
       }
 
@@ -96,7 +96,7 @@ describe("FNDCart", function () {
         await increaseTime(ONE_DAY + 1);
 
         const nfts: FNDCart.NFTStruct[] = [];
-        for (const tokenId in listedTokenIds) {
+        for (const tokenId of listedTokenIds) {
           nfts.push({ nftContract: nft.address, tokenId });
         }
         tx = await fndCart.withdrawNFTs(nfts, { gasLimit: 1_000_000 });
