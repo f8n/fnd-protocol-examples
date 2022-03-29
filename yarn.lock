@@ -543,10 +543,10 @@
     "@ethersproject/properties" "^5.6.0"
     "@ethersproject/strings" "^5.6.0"
 
-"@f8n/fnd-protocol@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@f8n/fnd-protocol/-/fnd-protocol-2.0.1.tgz#1df7acd64714581598202c378fab9432547d9c16"
-  integrity sha512-jd/EsGlzw0IndSOSM2YRo8R6QYZuxBwT8SNb1rpGoewLNz4Nj+o7EWKigrYjFK0VMFOo4nx4dQj5vPeUCLVOqA==
+"@f8n/fnd-protocol@2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@f8n/fnd-protocol/-/fnd-protocol-2.0.3.tgz#023cf8455c7ac21a6491f03c98abb79b6df56f6a"
+  integrity sha512-sCpGbIkZiFOewfsxZAExExtKKKbqv1QFLjRk2DGR7b27ee4dHsBnRO+NTub0ihM/EdxKMraw6iuRzxURW1+xuw==
 
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.3"
