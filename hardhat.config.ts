@@ -1,3 +1,7 @@
+import { config as dotenvConfig } from "dotenv";
+import { resolve } from "path";
+dotenvConfig({ path: resolve(__dirname, "./.env") });
+
 import "@nomiclabs/hardhat-waffle";
 import "@typechain/hardhat";
 import "@nomiclabs/hardhat-ethers";
@@ -24,6 +28,9 @@ const config: HardhatUserConfig = {
   },
   gasReporter: {
     excludeContracts: ["mocks/", "FoundationTreasury.sol", "ERC721.sol"],
+  },
+  mocha: {
+    timeout: 1200000,
   },
 };
 

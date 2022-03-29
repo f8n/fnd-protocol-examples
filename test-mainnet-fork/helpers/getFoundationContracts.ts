@@ -16,8 +16,9 @@ import {
   RoyaltyRegistry,
   RoyaltyRegistry__factory,
 } from "../../typechain-types";
-import addresses from "@f8n/fnd-protocol/addresses.js";
 import { ethers } from "ethers";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const addresses = require("@f8n/fnd-protocol/addresses.js");
 
 export type FoundationContracts = {
   treasury: FoundationTreasury;
@@ -25,7 +26,6 @@ export type FoundationContracts = {
   nft: FNDNFT721;
   percentSplitFactory: PercentSplitETH;
   collectionFactory: FNDCollectionFactory;
-  royaltyRegistry: RoyaltyRegistry;
   feth: FETH;
   proxyCall: ExternalProxyCall;
 };
@@ -38,7 +38,6 @@ export function getFoundationContracts(): FoundationContracts {
   const market = FNDNFTMarket__factory.connect(addresses.prod[1].nftMarket, defaultProvider);
   const percentSplitFactory = PercentSplitETH__factory.connect(addresses.prod[1].percentSplit, defaultProvider);
   const collectionFactory = FNDCollectionFactory__factory.connect(addresses.prod[1].collectionFactory, defaultProvider);
-  const royaltyRegistry = RoyaltyRegistry__factory.connect(addresses.prod[1].royaltyRegistry, defaultProvider);
   const feth = FETH__factory.connect(addresses.prod[1].feth, defaultProvider);
   const proxyCall = ExternalProxyCall__factory.connect(addresses.prod[1].proxy, defaultProvider);
 
@@ -48,7 +47,6 @@ export function getFoundationContracts(): FoundationContracts {
     nft,
     percentSplitFactory,
     collectionFactory,
-    royaltyRegistry,
     feth,
     proxyCall,
   };

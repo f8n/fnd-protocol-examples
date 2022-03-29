@@ -2,13 +2,18 @@
 
 Examples showing how you can use the @f8n/fnd-protocol npm package and integrate with [Foundation smart contracts](https://github.com/f8n/fnd-protocol).
 
+Set up the repository with:
+
+```
+yarn
+yarn build
+```
+
 ## Testing
 
 To test using a local deployment of the Foundation contracts, run:
 
 ```
-yarn
-yarn build
 yarn test
 ```
 
@@ -23,8 +28,6 @@ First create a `.env` file (you can use `.env.example` as a template) and set th
 Then you can test with:
 
 ```
-yarn
-yarn build
 yarn test-mainnet-fork
 ```
 
