@@ -13,8 +13,6 @@ import {
   FoundationTreasury__factory,
   PercentSplitETH,
   PercentSplitETH__factory,
-  RoyaltyRegistry,
-  RoyaltyRegistry__factory,
 } from "../../typechain-types";
 import { ethers } from "ethers";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
