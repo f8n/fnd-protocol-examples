@@ -9,8 +9,6 @@ jobs:
     steps:
       - checkout
 
-      # NPM auth from https://discuss.circleci.com/t/yarn-with-private-packages/10157
-      - run: echo "//registry.npmjs.org/:_authToken=${npm_TOKEN}" > ~/.npmrc
       - run: yarn
       - run: yarn build
 
@@ -26,6 +24,15 @@ jobs:
           at: ~/repo
 
       - run: yarn test
+  test-mainnet-fork:
+    docker:
+      - image: circleci/node:16
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run: yarn test-mainnet-fork
   lint:
     docker:
       - image: circleci/node:16
@@ -36,23 +43,10 @@ jobs:
 
       - run: yarn lint
 
-      # Auto-commit any lint or doc changes
+      # Auto-commit any lint changes
       - run: mkdir -p ~/.ssh
       - run: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - run: bash .circleci/commit.sh
-  publish:
-    docker:
-      - image: circleci/node:16
-    working_directory: ~/repo
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
-      - run:
-          name: Publish package
-          command: npm publish
 
 workflows:
   build:
@@ -68,14 +62,9 @@ workflows:
       - test:
           requires:
             - build
+      - test-mainnet-fork:
+          requires:
+            - build
       - lint:
           requires:
             - build
-      - publish:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/

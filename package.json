@@ -9,6 +9,7 @@
     "lint:ts": "eslint --config ./.eslintrc.yaml --fix --ext .js,.ts .",
     "prettier": "prettier --config .prettierrc --write --list-different \"**/*.{js,json,md,sol,ts}\"",
     "test": "hardhat test",
+    "test-mainnet-fork": "hardhat --config hardhat.test-mainnet-fork.config.ts test",
     "size-contracts": "hardhat size-contracts"
   },
   "devDependencies": {
@@ -45,12 +46,6 @@
     "typechain": "7.0.1",
     "typescript": "4.6.3"
   },
-  "files": [
-    "addresses.js",
-    "artifacts",
-    "contracts",
-    "!contracts/mocks/**/*"
-  ],
   "license": "MIT",
   "repository": {
     "type": "git",
