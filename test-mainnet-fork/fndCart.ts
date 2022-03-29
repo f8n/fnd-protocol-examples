@@ -30,7 +30,7 @@ describe("FNDCart", function () {
     for (let i = 0; i < 10; i++) {
       const tx = await nft.connect(creator).mint(testIpfsPath[i]);
 
-      if(i === 0) {
+      if (i === 0) {
         // Update the tokenIds for listings
         const receipt = await tx.wait();
         const log = receipt.events?.find(e => e.event === "Minted");
