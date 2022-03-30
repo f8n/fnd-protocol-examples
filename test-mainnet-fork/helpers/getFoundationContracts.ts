@@ -14,7 +14,8 @@ import {
   PercentSplitETH,
   PercentSplitETH__factory,
 } from "../../typechain-types";
-import { ethers } from "ethers";
+import { ethers } from "hardhat";
+import { resetNodeState } from "./mainnet";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const addresses = require("@f8n/fnd-protocol/addresses.js");
 
@@ -28,16 +29,17 @@ export type FoundationContracts = {
   proxyCall: ExternalProxyCall;
 };
 
-export function getFoundationContracts(): FoundationContracts {
-  const defaultProvider = ethers.getDefaultProvider();
+export async function getFoundationContracts(): Promise<FoundationContracts> {
+  await resetNodeState();
+  const [defaultAccount] = await ethers.getSigners();
 
-  const treasury = FoundationTreasury__factory.connect(addresses.prod[1].treasury, defaultProvider);
-  const nft = FNDNFT721__factory.connect(addresses.prod[1].nft721, defaultProvider);
-  const market = FNDNFTMarket__factory.connect(addresses.prod[1].nftMarket, defaultProvider);
-  const percentSplitFactory = PercentSplitETH__factory.connect(addresses.prod[1].percentSplit, defaultProvider);
-  const collectionFactory = FNDCollectionFactory__factory.connect(addresses.prod[1].collectionFactory, defaultProvider);
-  const feth = FETH__factory.connect(addresses.prod[1].feth, defaultProvider);
-  const proxyCall = ExternalProxyCall__factory.connect(addresses.prod[1].proxy, defaultProvider);
+  const treasury = FoundationTreasury__factory.connect(addresses.prod[1].treasury, defaultAccount);
+  const nft = FNDNFT721__factory.connect(addresses.prod[1].nft721, defaultAccount);
+  const market = FNDNFTMarket__factory.connect(addresses.prod[1].nftMarket, defaultAccount);
+  const percentSplitFactory = PercentSplitETH__factory.connect(addresses.prod[1].percentSplit, defaultAccount);
+  const collectionFactory = FNDCollectionFactory__factory.connect(addresses.prod[1].collectionFactory, defaultAccount);
+  const feth = FETH__factory.connect(addresses.prod[1].feth, defaultAccount);
+  const proxyCall = ExternalProxyCall__factory.connect(addresses.prod[1].proxy, defaultAccount);
 
   return {
     treasury,

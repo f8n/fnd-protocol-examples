@@ -31,6 +31,6 @@ Then you can test with:
 yarn test-mainnet-fork
 ```
 
-This uses the `test-mainnet-fork/helpers/getContracts.ts` helper file to get Typechain instances of each of the Foundation contracts, reading the addresses from our NPM package.
+This uses the `test-mainnet-fork/helpers/getFoundationContracts.ts` helper file to get Typechain instances of each of the Foundation contracts, reading the addresses from our NPM package.
 
-We have included helper functions such as `impersonate` to ease interacting with the fork.
+We have also included helper functions such as `impersonate` to ease interacting with the fork.

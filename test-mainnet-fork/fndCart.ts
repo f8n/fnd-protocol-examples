@@ -2,7 +2,15 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { ethers } from "hardhat";
 import { expect } from "chai";
 import { ContractTransaction } from "ethers";
-import { FETH, FNDCart, FNDCart__factory, FNDNFT721, FNDNFTMarket } from "../typechain-types";
+import {
+  CollectionContract,
+  CollectionContract__factory,
+  FETH,
+  FNDCart,
+  FNDCart__factory,
+  FNDCollectionFactory,
+  FNDNFTMarket,
+} from "../typechain-types";
 import { getFoundationContracts } from "./helpers/getFoundationContracts";
 import { increaseTime } from "../test/helpers/network";
 import { ONE_DAY } from "../test/helpers/constants";
@@ -13,7 +21,8 @@ describe("FNDCart", function () {
   let bidder: SignerWithAddress;
   let market: FNDNFTMarket;
   let feth: FETH;
-  let nft: FNDNFT721;
+  let collectionFactory: FNDCollectionFactory;
+  let nft: CollectionContract;
   let fndCart: FNDCart;
   const reservePrice = ethers.utils.parseEther("0.1");
   const listedTokenIds = [1, 5, 6, 7];
@@ -23,28 +32,18 @@ describe("FNDCart", function () {
 
   beforeEach(async () => {
     [, creator, bidder] = await ethers.getSigners();
-    ({ market, feth, nft } = getFoundationContracts());
+    ({ market, feth, collectionFactory } = await getFoundationContracts());
     fndCart = await new FNDCart__factory(bidder).deploy(market.address, feth.address);
+
+    await collectionFactory.connect(creator).createCollection("Collection", "COL", 42);
+    nft = CollectionContract__factory.connect(
+      await collectionFactory.predictCollectionAddress(creator.address, 42),
+      creator,
+    );
 
     // Mint 10 tokens
     for (let i = 0; i < 10; i++) {
-      const tx = await nft.connect(creator).mint(testIpfsPath[i]);
-
-      if (i === 0) {
-        // Update the tokenIds for listings
-        const receipt = await tx.wait();
-        const log = receipt.events?.find(e => e.event === "Minted");
-        if (!log?.args) {
-          throw new Error("No `Minted` event detected");
-        }
-        const baseTokenId = Number.parseInt(log.args[1]);
-        for (let j = 0; j < listedTokenIds.length; j++) {
-          listedTokenIds[j] += baseTokenId;
-        }
-        for (let j = 0; j < pricedTokenIds.length; j++) {
-          pricedTokenIds[j] += baseTokenId;
-        }
-      }
+      await nft.connect(creator).mint(testIpfsPath[i]);
     }
     await nft.connect(creator).setApprovalForAll(market.address, true);
 
