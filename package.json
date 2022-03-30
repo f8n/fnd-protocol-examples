@@ -9,10 +9,11 @@
     "lint:ts": "eslint --config ./.eslintrc.yaml --fix --ext .js,.ts .",
     "prettier": "prettier --config .prettierrc --write --list-different \"**/*.{js,json,md,sol,ts}\"",
     "test": "hardhat test",
+    "test-mainnet-fork": "hardhat --config hardhat.test-mainnet-fork.config.ts test",
     "size-contracts": "hardhat size-contracts"
   },
   "devDependencies": {
-    "@f8n/fnd-protocol": "2.0.1",
+    "@f8n/fnd-protocol": "2.0.3",
     "@manifoldxyz/royalty-registry-solidity": "1.0.9",
     "@nomiclabs/hardhat-ethers": "2.0.5",
     "@nomiclabs/hardhat-waffle": "2.0.3",
@@ -27,12 +28,13 @@
     "@typescript-eslint/eslint-plugin": "5.16.0",
     "@typescript-eslint/parser": "5.16.0",
     "chai": "4.3.6",
+    "dotenv": "16.0.0",
     "eslint": "8.12.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-no-only-tests": "2.6.0",
     "ethereum-waffle": "3.4.4",
     "ethers": "5.6.2",
-    "hardhat": "2.9.2",
+    "hardhat": "2.8.0",
     "hardhat-contract-sizer": "2.5.1",
     "hardhat-gas-reporter": "1.0.8",
     "hardhat-tracer": "1.0.0-alpha.6",
@@ -45,12 +47,6 @@
     "typechain": "7.0.1",
     "typescript": "4.6.3"
   },
-  "files": [
-    "addresses.js",
-    "artifacts",
-    "contracts",
-    "!contracts/mocks/**/*"
-  ],
   "license": "MIT",
   "repository": {
     "type": "git",
