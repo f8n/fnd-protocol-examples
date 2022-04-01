@@ -1,4 +1,4 @@
-# F8N-Protocol-Examples
+![FND Github-Examples](https://user-images.githubusercontent.com/14855515/161173632-810cdd99-e5b0-471b-b3a0-6d3b380dad6c.png)
 
 Examples showing how you can use the @f8n/fnd-protocol npm package and integrate with [Foundation smart contracts](https://github.com/f8n/fnd-protocol).
 
