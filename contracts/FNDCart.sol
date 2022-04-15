@@ -33,7 +33,7 @@ contract FNDCart is Ownable {
   /**
    * @notice Initialize the contract.
    * @param _market The Foundation market contract address on this network.
-   * @param _referrerTreasury A treasury address to receive a referral kick-back fee. 
+   * @param _referrerTreasury A treasury address to receive a referral kick-back fee.
    */
   constructor(
     address payable _market,
