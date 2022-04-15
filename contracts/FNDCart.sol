@@ -18,6 +18,7 @@ contract FNDCart is Ownable {
 
   FNDNFTMarket public immutable market;
   FETH public immutable feth;
+  address payable public immutable referrerTreasury;
 
   struct NFT {
     address nftContract;
@@ -33,9 +34,14 @@ contract FNDCart is Ownable {
    * @notice Initialize the contract.
    * @param _market The Foundation market contract address on this network.
    */
-  constructor(address payable _market, address payable _feth) {
+  constructor(
+    address payable _market,
+    address payable _feth,
+    address payable _referrerTreasury
+  ) {
     market = FNDNFTMarket(_market);
     feth = FETH(_feth);
+    referrerTreasury = _referrerTreasury;
   }
 
   /**
@@ -146,7 +152,8 @@ contract FNDCart is Ownable {
     (, uint256 price) = market.getBuyPrice(item.nft.nftContract, item.nft.tokenId);
     // The price would be MAX_UINT256 if the token is not for sale with buy now.
     if (price <= item.maxPrice && price <= address(this).balance) {
-      market.buy{ value: price }(item.nft.nftContract, item.nft.tokenId, price);
+      // Buy NFT with a referral kick-back to the cart's treasury.
+      market.buyV2{ value: price }(item.nft.nftContract, item.nft.tokenId, price, referrerTreasury);
       // Transfer the NFT to the end user.
       IERC721(item.nft.nftContract).transferFrom(address(this), msg.sender, item.nft.tokenId);
       bought = true;
