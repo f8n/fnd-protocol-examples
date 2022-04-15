@@ -11,6 +11,7 @@ describe("FNDCart", function () {
   let deployer: SignerWithAddress;
   let creator: SignerWithAddress;
   let bidder: SignerWithAddress;
+  let referrerTreasury: SignerWithAddress;
   let market: FNDNFTMarket;
   let feth: FETH;
   let nft: MockNFT;
@@ -22,9 +23,9 @@ describe("FNDCart", function () {
   let tx: ContractTransaction;
 
   beforeEach(async () => {
-    [deployer, creator, bidder] = await ethers.getSigners();
+    [deployer, creator, bidder, referrerTreasury] = await ethers.getSigners();
     ({ market, feth, nft } = await deployContracts({ deployer, creator }));
-    fndCart = await new FNDCart__factory(bidder).deploy(market.address, feth.address);
+    fndCart = await new FNDCart__factory(bidder).deploy(market.address, feth.address, referrerTreasury.address);
 
     // Mint 10 tokens
     for (let i = 0; i < 10; i++) {
@@ -67,7 +68,15 @@ describe("FNDCart", function () {
             buyPrice.mul(95).div(100),
             0,
           );
+        await expect(tx).to.emit(market, "BuyReferralPaid").withArgs(
+          nft.address, // token
+          tokenId, // tokenID
+          referrerTreasury.address, // buyReferrer
+          buyPrice.mul(1).div(100), // buyReferrerProtocolFee
+          0, // buyReferrerSellerFee
+        );
       }
+      await expect(tx).to.changeEtherBalance(referrerTreasury, buyPrice.mul(3).div(100));
     });
 
     it("Bought NFTs were transferred to the bidder", async () => {

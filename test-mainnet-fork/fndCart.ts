@@ -19,6 +19,7 @@ import { testIpfsPath } from "../test/helpers/testIpfsPath";
 describe("FNDCart", function () {
   let creator: SignerWithAddress;
   let bidder: SignerWithAddress;
+  let referrerTreasury: SignerWithAddress;
   let market: FNDNFTMarket;
   let feth: FETH;
   let collectionFactory: FNDCollectionFactory;
@@ -31,9 +32,9 @@ describe("FNDCart", function () {
   let tx: ContractTransaction;
 
   beforeEach(async () => {
-    [, creator, bidder] = await ethers.getSigners();
+    [, creator, bidder, referrerTreasury] = await ethers.getSigners();
     ({ market, feth, collectionFactory } = await getFoundationContracts());
-    fndCart = await new FNDCart__factory(bidder).deploy(market.address, feth.address);
+    fndCart = await new FNDCart__factory(bidder).deploy(market.address, feth.address, referrerTreasury.address);
 
     await collectionFactory.connect(creator).createCollection("Collection", "COL", 42);
     nft = CollectionContract__factory.connect(
@@ -82,7 +83,15 @@ describe("FNDCart", function () {
             buyPrice.mul(95).div(100),
             0,
           );
+        await expect(tx).to.emit(market, "BuyReferralPaid").withArgs(
+          nft.address, // token
+          tokenId, // tokenID
+          referrerTreasury.address, // buyReferrer
+          buyPrice.mul(1).div(100), // buyReferrerProtocolFee
+          0, // buyReferrerSellerFee
+        );
       }
+      await expect(tx).to.changeEtherBalance(referrerTreasury, buyPrice.mul(3).div(100));
     });
 
     it("Bought NFTs were transferred to the bidder", async () => {
