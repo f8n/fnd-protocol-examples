@@ -13,7 +13,7 @@
     "size-contracts": "hardhat size-contracts"
   },
   "devDependencies": {
-    "@f8n/fnd-protocol": "2.1.1",
+    "@f8n/fnd-protocol": "2.2.0",
     "@manifoldxyz/royalty-registry-solidity": "1.0.9",
     "@nomiclabs/hardhat-ethers": "2.0.5",
     "@nomiclabs/hardhat-waffle": "2.0.3",
