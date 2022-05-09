@@ -134,7 +134,7 @@ contract FNDCart is Ownable {
       uint256 bid = market.getMinBidAmount(auctionId);
       if (bid <= item.maxPrice && bid <= address(this).balance) {
         try
-          market.placeBidOf{ value: bid }(auctionId, bid) // solhint-disable-next-line no-empty-blocks
+          market.placeBidV2{ value: bid }(auctionId, bid, referrerTreasury) // solhint-disable-next-line no-empty-blocks
         {
           // Successfully placed the bid.
           bidPlaced = true;
@@ -166,9 +166,7 @@ contract FNDCart is Ownable {
    */
   function _tryOffer(CartItem memory item) internal returns (bool offerMade) {
     uint256 offer = item.maxPrice.min(address(this).balance);
-    try
-      market.makeOffer(item.nft.nftContract, item.nft.tokenId, offer) // solhint-disable-next-line no-empty-blocks
-    {
+    try market.makeOfferV2(item.nft.nftContract, item.nft.tokenId, offer, referrerTreasury) {
       // Successfully made the offer.
       offerMade = true;
     } catch // solhint-disable-next-line no-empty-blocks

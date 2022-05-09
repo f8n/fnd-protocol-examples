@@ -121,6 +121,22 @@ describe("FNDCart", function () {
           expect(ownerOf).to.eq(bidder.address);
         }
       });
+
+      it("Emits BuyReferralPaid when finalized", async () => {
+        for (const tokenId of listedTokenIds) {
+          if (pricedTokenIds.includes(tokenId)) {
+            // This was purchased directly instead
+            continue;
+          }
+          await expect(tx).to.emit(market, "BuyReferralPaid").withArgs(
+            nft.address, // token
+            tokenId, // tokenID
+            referrerTreasury.address, // buyReferrer
+            reservePrice.mul(1).div(100), // buyReferrerProtocolFee
+            0, // buyReferrerSellerFee
+          );
+        }
+      });
     });
   });
 });
