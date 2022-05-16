@@ -23,11 +23,3 @@ updates:
       time: "01:00"
       timezone: "America/New_York"
     open-pull-requests-limit: 200
-  - package-ecosystem: "npm"
-    directory: "/subgraph/" # Location of package manifests
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "01:00"
-      timezone: "America/New_York"
-    open-pull-requests-limit: 200
