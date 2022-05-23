@@ -31,6 +31,12 @@ async function main(): Promise<void> {
   }
 
   let allSales = [...buyPricesAccepted, ...offersAccepted, ...auctionsFinalized];
+
+  if (allSales.length === 0) {
+    console.log(`No sales found for ${collection} #${tokenId}`);
+    return;
+  }
+
   allSales = allSales.sort((a, b) => {
     // If there were multiple sales in the same block (which should be rare), then sort by log index
     if (a.blockNumber === b.blockNumber) {
@@ -39,11 +45,6 @@ async function main(): Promise<void> {
     // Otherwise sort by block number
     return a.blockNumber - b.blockNumber;
   });
-
-  if (allSales.length === 0) {
-    console.log(`No sales found for ${collection} #${tokenId}`);
-    return;
-  }
 
   const mostRecentSale = allSales[allSales.length - 1];
   // The sale price is the sum of the 3 fees emitted
