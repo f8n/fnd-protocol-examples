@@ -47,6 +47,16 @@ jobs:
       - run: mkdir -p ~/.ssh
       - run: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - run: bash .circleci/commit.sh
+  scripts:
+    docker:
+      - image: circleci/node:16
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      # Run scripts to confirm they still compile and execute without error
+      - run: yarn run-script scripts/rpc/getSaleHistory.ts --network mainnet
 
 workflows:
   build:
@@ -66,5 +76,8 @@ workflows:
           requires:
             - build
       - lint:
+          requires:
+            - build
+      - scripts:
           requires:
             - build
