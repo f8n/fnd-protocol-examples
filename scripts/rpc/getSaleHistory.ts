@@ -20,8 +20,8 @@ async function main(): Promise<void> {
   // It is possible to query for all buyPricesAccepted and offersAccepted in a single tx, but for simplicity we do it separately here
 
   // Due to use of auctionIds, each auction listing needs to be checked independently
-  const auctionsFinalized: ReserveAuctionFinalizedEvent[] = [];
   const auctionsCreated = await market.queryFilter(market.filters.ReserveAuctionCreated(null, collection, tokenId));
+  const auctionsFinalized: ReserveAuctionFinalizedEvent[] = [];
   for (const auction of auctionsCreated) {
     const finalized = await market.queryFilter(market.filters.ReserveAuctionFinalized(auction.args.auctionId));
     if (finalized.length > 0) {
@@ -47,10 +47,12 @@ async function main(): Promise<void> {
   });
 
   const mostRecentSale = allSales[allSales.length - 1];
+
   // The sale price is the sum of the 3 fees emitted
   const mostRecentSalePrice = mostRecentSale.args.sellerRev
     .add(mostRecentSale.args.creatorFee)
     .add(mostRecentSale.args.protocolFee);
+
   console.log(
     `Most recent sale for ${collection} #${tokenId} was for ${ethers.utils.formatEther(mostRecentSalePrice)} ETH`,
   );
