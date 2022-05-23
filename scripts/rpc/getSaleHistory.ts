@@ -17,7 +17,7 @@ async function main(): Promise<void> {
 
   const buyPricesAccepted = await market.queryFilter(market.filters.BuyPriceAccepted(collection, tokenId));
   const offersAccepted = await market.queryFilter(market.filters.OfferAccepted(collection, tokenId));
-  // It is possible to query for all buyPricesAccepted and offersAccepted in a single tx, but for simplicity we do it separately here
+  // It is possible to query for all buyPricesAccepted and offersAccepted in a single request, but for simplicity we do it separately here
 
   // Due to use of auctionIds, each auction listing needs to be checked independently
   const auctionsCreated = await market.queryFilter(market.filters.ReserveAuctionCreated(null, collection, tokenId));
