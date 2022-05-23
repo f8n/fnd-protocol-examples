@@ -22,6 +22,11 @@ const config: HardhatUserConfig = {
       },
     },
   },
+  networks: {
+    mainnet: {
+      url: process.env[`RPC_URL_MAINNET`],
+    },
+  },
   typechain: {
     target: "ethers-v5",
     externalArtifacts: ["node_modules/@manifoldxyz/royalty-registry-solidity/build/contracts/*.json"],
