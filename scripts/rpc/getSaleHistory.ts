@@ -1,6 +1,8 @@
 /*
  * An example of how to query the Foundation sale history of an NFT using RPC (e.g. Alchemy) requests.
  * Run with `yarn run-script scripts/rpc/getSaleHistory.ts --network mainnet`
+ *
+ * See `scripts/subgraph/getSaleHistory.ts` for an alternative approach to querying the Foundation sale history.
  */
 
 import { ethers } from "hardhat";
