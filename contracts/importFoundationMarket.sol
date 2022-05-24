@@ -7,6 +7,7 @@ import "@f8n/fnd-protocol/contracts/FoundationTreasury.sol";
 import "@f8n/fnd-protocol/contracts/FNDNFT721.sol";
 import "@f8n/fnd-protocol/contracts/PercentSplitETH.sol";
 import "@f8n/fnd-protocol/contracts/FNDNFTMarket.sol";
+import "@f8n/fnd-protocol/contracts/FNDMiddleware.sol";
 import "@f8n/fnd-protocol/contracts/ExternalProxyCall.sol";
 import "@f8n/fnd-protocol/contracts/FETH.sol";
 import "@f8n/fnd-protocol/contracts/mocks/MockNFT.sol";
