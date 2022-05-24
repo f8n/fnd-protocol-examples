@@ -57,6 +57,7 @@ jobs:
 
       # Run scripts to confirm they still compile and execute without error
       - run: yarn run-script scripts/rpc/getSaleHistory.ts --network mainnet
+      - run: yarn run-script scripts/subgraph/getSaleHistory.ts
 
 workflows:
   build:
