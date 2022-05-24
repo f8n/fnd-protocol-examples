@@ -38,3 +38,5 @@ We have also included helper functions such as `impersonate` to ease interacting
 ## Example scripts
 
 Some example scripts are included in the `scripts` directory to demonstrate various ways you may integrate with Foundation contracts or the data it logs on-chain. The `scripts/rpc` directory shows integrations using just an RPC endpoint such as Alchemy and the `scripts/subgraph` directory shows an alternative approach using our hosted subgraph instance.
+
+If you have a question on how to use the Foundation contracts, please post to the [discussions](https://github.com/f8n/fnd-protocol-examples/discussions) - maybe we could create another example script to help you and others.
