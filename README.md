@@ -34,3 +34,7 @@ yarn test-mainnet-fork
 This uses the `test-mainnet-fork/helpers/getFoundationContracts.ts` helper file to get Typechain instances of each of the Foundation contracts, reading the addresses from our NPM package.
 
 We have also included helper functions such as `impersonate` to ease interacting with the fork.
+
+## Example scripts
+
+Some example scripts are included in the `scripts` directory to demonstrate various ways you may integrate with Foundation contracts or the data it logs on-chain. The `scripts/rpc` directory shows integrations using just an RPC endpoint such as Alchemy and the `scripts/subgraph` directory shows an alternative approach using our hosted subgraph instance.
