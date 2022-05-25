@@ -30,7 +30,7 @@ async function main(): Promise<void> {
     );
   } else {
     const currentTime = (await ethers.provider.getBlock("latest")).timestamp;
-    if (nftDetails.auctionEndTime.lt(currentTime)) {
+    if (nftDetails.auctionEndTime.gt(currentTime)) {
       console.log(
         `An auction is in progress with the highest bid of ${ethers.utils.formatEther(
           nftDetails.auctionPrice,
