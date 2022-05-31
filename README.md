@@ -1,4 +1,4 @@
-![FND Github-Examples](https://user-images.githubusercontent.com/14855515/161173632-810cdd99-e5b0-471b-b3a0-6d3b380dad6c.png)
+<img width="1200" alt="Repo — Protocol" src="https://user-images.githubusercontent.com/14855515/171161586-dfa5fe17-55b1-440f-ab53-c3aebc30d2d0.png">
 
 Examples showing how you can use the @f8n/fnd-protocol npm package and integrate with [Foundation smart contracts](https://github.com/f8n/fnd-protocol).
 
