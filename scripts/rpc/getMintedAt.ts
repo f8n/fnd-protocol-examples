@@ -6,14 +6,14 @@
  */
 
 import { ethers } from "hardhat";
-import { ERC721__factory } from "../../typechain-types";
+import { IERC721__factory } from "../../typechain-types";
 
 // The example NFT to query for, this should be updated with the NFT of interest
 const collection = "0x3B3ee1931Dc30C1957379FAc9aba94D1C48a5405";
 const tokenId = 105912;
 
 async function main(): Promise<void> {
-  const nft = ERC721__factory.connect(collection, ethers.provider);
+  const nft = IERC721__factory.connect(collection, ethers.provider);
 
   const mintedEvents = await nft.queryFilter(nft.filters.Transfer(ethers.constants.AddressZero, undefined, tokenId));
   if (mintedEvents.length === 0) {
