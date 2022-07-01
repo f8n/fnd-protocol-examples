@@ -16,7 +16,7 @@ async function main(): Promise<void> {
   const nft = ERC721__factory.connect(collection, ethers.provider);
 
   const mintedEvents = await nft.queryFilter(nft.filters.Transfer(ethers.constants.AddressZero, undefined, tokenId));
-  if (!mintedEvents || mintedEvents.length === 0) {
+  if (mintedEvents.length === 0) {
     console.log(`No minted events found for ${collection} #${tokenId}`);
     return;
   }
