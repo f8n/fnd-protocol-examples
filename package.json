@@ -39,7 +39,7 @@
     "graphql-request": "4.3.0",
     "graphql-tag": "2.12.6",
     "hardhat": "2.9.9",
-    "hardhat-contract-sizer": "2.5.1",
+    "hardhat-contract-sizer": "2.6.1",
     "hardhat-gas-reporter": "1.0.8",
     "hardhat-tracer": "1.0.0-alpha.6",
     "prettier": "2.7.1",
