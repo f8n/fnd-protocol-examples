@@ -12,8 +12,8 @@ import { FNDMiddleware__factory } from "../../typechain-types";
 const addresses = require("@f8n/fnd-protocol/addresses.js");
 
 // The example NFT to query for, this should be updated with the NFT of interest
-const collection = "0xD1151b5D7051E1f787AA244D19724e2cbD9b84b0";
-const tokenId = 4;
+const collection = "0xfb856F0AeD8b23dcED99484031f8FE471b36B0C7";
+const tokenId = 3;
 
 async function main(): Promise<void> {
   // Connect to the Foundation middleware contract
