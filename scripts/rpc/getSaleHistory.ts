@@ -6,8 +6,8 @@
  */
 
 import { ethers } from "hardhat";
-import { FNDNFTMarket__factory } from "../../typechain-types";
-import { ReserveAuctionFinalizedEvent } from "../../typechain-types/FNDNFTMarket";
+import { NFTMarket__factory } from "../../typechain-types";
+import { ReserveAuctionFinalizedEvent } from "../../typechain-types/NFTMarket";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const addresses = require("@f8n/fnd-protocol/addresses.js");
 
@@ -17,7 +17,7 @@ const tokenId = 105912;
 
 async function main(): Promise<void> {
   // Connect to the Foundation market contract
-  const market = FNDNFTMarket__factory.connect(addresses.prod[1].nftMarket, ethers.provider);
+  const market = NFTMarket__factory.connect(addresses.prod[1].nftMarket, ethers.provider);
 
   // Query for all sales via Buy Price and via Offers
   const buyPricesAccepted = await market.queryFilter(market.filters.BuyPriceAccepted(collection, tokenId));

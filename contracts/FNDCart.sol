@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/utils/math/Math.sol";
-import "@f8n/fnd-protocol/contracts/FNDNFTMarket.sol";
+import "@f8n/fnd-protocol/contracts/NFTMarket.sol";
 import "@f8n/fnd-protocol/contracts/FETH.sol";
 
 /**
@@ -16,7 +16,7 @@ contract FNDCart is Ownable {
   using Address for address payable;
   using Math for uint256;
 
-  FNDNFTMarket public immutable market;
+  NFTMarket public immutable market;
   FETH public immutable feth;
   address payable public immutable referrerTreasury;
 
@@ -40,7 +40,7 @@ contract FNDCart is Ownable {
     address payable _feth,
     address payable _referrerTreasury
   ) {
-    market = FNDNFTMarket(_market);
+    market = NFTMarket(_market);
     feth = FETH(_feth);
     referrerTreasury = _referrerTreasury;
   }

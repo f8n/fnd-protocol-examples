@@ -471,10 +471,10 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@f8n/fnd-protocol@2.2.3-1":
-  version "2.2.3-1"
-  resolved "https://registry.yarnpkg.com/@f8n/fnd-protocol/-/fnd-protocol-2.2.3-1.tgz#f666ba2316df4ad96f2fdb94a08d390d70bdc550"
-  integrity sha512-en8sD8skgb48pbsExeN81fiqmBECR+w++WB3HaumSSwahBA0xc7GeEyEg9skF+HHX/+OhgI4lBsXZOOhZZ17OA==
+"@f8n/fnd-protocol@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@f8n/fnd-protocol/-/fnd-protocol-2.3.0.tgz#c3658f033ccd1170aebbf994f0d58445597e3e9e"
+  integrity sha512-EbnqqbQP/7ZOaJTBrAnVey+Wadl6p5/H0Yn3f/97+zLyyfaNlbZCCSxxMIvs4xHEdBwVaXfs6564RV64nqEzKw==
 
 "@graphql-typed-document-node/core@^3.1.1":
   version "3.1.1"

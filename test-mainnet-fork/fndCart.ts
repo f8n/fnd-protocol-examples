@@ -3,14 +3,14 @@ import { ethers } from "hardhat";
 import { expect } from "chai";
 import { ContractTransaction } from "ethers";
 import {
-  CollectionContract,
-  CollectionContract__factory,
   FETH,
   FNDCart,
   FNDCart__factory,
-  FNDCollectionFactory,
-  FNDNFTMarket,
-} from "../typechain-types";
+  NFTCollection,
+  NFTCollection__factory,
+  NFTCollectionFactory,
+  NFTMarket,
+} from "../typechain-types/index";
 import { getFoundationContracts } from "./helpers/getFoundationContracts";
 import { increaseTime } from "../test/helpers/network";
 import { ONE_DAY } from "../test/helpers/constants";
@@ -20,10 +20,10 @@ describe("FNDCart", function () {
   let creator: SignerWithAddress;
   let bidder: SignerWithAddress;
   let referrerTreasury: SignerWithAddress;
-  let market: FNDNFTMarket;
+  let market: NFTMarket;
   let feth: FETH;
-  let collectionFactory: FNDCollectionFactory;
-  let nft: CollectionContract;
+  let collectionFactory: NFTCollectionFactory;
+  let nft: NFTCollection;
   let fndCart: FNDCart;
   const reservePrice = ethers.utils.parseEther("0.1");
   const listedTokenIds = [1, 5, 6, 7];
@@ -36,9 +36,9 @@ describe("FNDCart", function () {
     ({ market, feth, collectionFactory } = await getFoundationContracts());
     fndCart = await new FNDCart__factory(bidder).deploy(market.address, feth.address, referrerTreasury.address);
 
-    await collectionFactory.connect(creator).createCollection("Collection", "COL", 42);
-    nft = CollectionContract__factory.connect(
-      await collectionFactory.predictCollectionAddress(creator.address, 42),
+    await collectionFactory.connect(creator).createNFTCollection("Collection", "COL", 42);
+    nft = NFTCollection__factory.connect(
+      await collectionFactory.predictNFTCollectionAddress(creator.address, 42),
       creator,
     );
 

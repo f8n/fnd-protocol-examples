@@ -2,7 +2,7 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { ethers } from "hardhat";
 import { expect } from "chai";
 import { ContractTransaction } from "ethers";
-import { FETH, FNDCart, FNDCart__factory, FNDNFTMarket, MockNFT } from "../typechain-types";
+import { FETH, FNDCart, FNDCart__factory, MockNFT, NFTMarket } from "../typechain-types";
 import { deployContracts } from "./helpers/deploy";
 import { ONE_DAY } from "./helpers/constants";
 import { increaseTime } from "./helpers/network";
@@ -12,7 +12,7 @@ describe("FNDCart", function () {
   let creator: SignerWithAddress;
   let bidder: SignerWithAddress;
   let referrerTreasury: SignerWithAddress;
-  let market: FNDNFTMarket;
+  let market: NFTMarket;
   let feth: FETH;
   let nft: MockNFT;
   let fndCart: FNDCart;
