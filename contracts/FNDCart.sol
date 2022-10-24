@@ -35,11 +35,7 @@ contract FNDCart is Ownable {
    * @param _market The Foundation market contract address on this network.
    * @param _referrerTreasury A treasury address to receive a referral kick-back fee.
    */
-  constructor(
-    address payable _market,
-    address payable _feth,
-    address payable _referrerTreasury
-  ) {
+  constructor(address payable _market, address payable _feth, address payable _referrerTreasury) {
     market = NFTMarket(_market);
     feth = FETH(_feth);
     referrerTreasury = _referrerTreasury;
@@ -117,11 +113,7 @@ contract FNDCart is Ownable {
    * @notice Make any arbitrary calls.
    * @dev This should not be necessary, but here just in case you need to recover other assets.
    */
-  function proxyCall(
-    address payable target,
-    bytes memory callData,
-    uint256 value
-  ) external onlyOwner {
+  function proxyCall(address payable target, bytes memory callData, uint256 value) external onlyOwner {
     target.functionCallWithValue(callData, value);
   }
 
