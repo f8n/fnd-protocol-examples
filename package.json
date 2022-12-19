@@ -36,7 +36,7 @@
     "ethereum-waffle": "3.4.4",
     "ethers": "5.7.1",
     "graphql": "16.6.0",
-    "graphql-request": "5.0.0",
+    "graphql-request": "5.1.0",
     "graphql-tag": "2.12.6",
     "hardhat": "2.11.2",
     "hardhat-contract-sizer": "2.6.1",
